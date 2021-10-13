@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option go_package = "./;pb";
+
+message Todo {
+    string id = 1;
+    string title = 2;
+}
+
+message GetAllRequest {}
+message GetAllResponse {
+    repeated Todo todos = 1;
+}
+
+message GetByIDRequest {
+    string id = 1;
+}
+message GetByIDResponse {
+    Todo todo = 1;
+}
+
+message CreateRequest {
+    string title = 1;
+}
+message CreateResponse {}
+
+service TodoService {
+    rpc GetAll(GetAllRequest) returns (GetAllResponse) {};
+	rpc GetByID(GetByIDRequest) returns (GetByIDResponse) {};
+	rpc Create(CreateRequest) returns (CreateResponse) {};
+}
